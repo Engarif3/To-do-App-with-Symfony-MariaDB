@@ -14,15 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 class ToDoController extends AbstractController
 {
     #[Route('/', name: 'todo_index')]
-    // public function index(EntityManagerInterface $em): Response
-    // {
-    //     $todos = $em->getRepository(ToDo::class)->findAll();
-
-    //     return $this->render('todo/index.html.twig', [
-    //         'todos' => $todos,
-    //     ]);
-    // }
-
     public function index(Request $request, EntityManagerInterface $em): Response
     {
         $statusFilter = $request->query->get('status'); // Get the filter status from the query parameter
