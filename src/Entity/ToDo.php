@@ -1,5 +1,6 @@
 <?php
 
+// src/Entity/ToDo.php
 namespace App\Entity;
 
 use App\Repository\ToDoRepository;
@@ -16,8 +17,11 @@ class ToDo
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'boolean')]
     private ?bool $completed = null;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?\DateTimeInterface $createdAt = null;
 
     public function getId(): ?int
     {
@@ -32,7 +36,6 @@ class ToDo
     public function setTitle(string $title): static
     {
         $this->title = $title;
-
         return $this;
     }
 
@@ -44,7 +47,17 @@ class ToDo
     public function setCompleted(bool $completed): static
     {
         $this->completed = $completed;
+        return $this;
+    }
 
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): static
+    {
+        $this->createdAt = $createdAt;
         return $this;
     }
 }

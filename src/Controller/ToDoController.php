@@ -31,6 +31,8 @@ class ToDoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Set the creation date when a new ToDo is created
+            $todo->setCreatedAt(new \DateTime());
             $em->persist($todo);
             $em->flush();
 
