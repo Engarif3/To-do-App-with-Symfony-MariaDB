@@ -5,8 +5,6 @@
 {% block body %}
     <h1 class="text-4xl font-semibold text-center text-gray-800 pt-16 font-mono">Tasks List</h1>
 
-   
-
     <div class="text-center mb-6 mt-16">
         <!-- Sorting buttons -->
         <a href="{{ path('todo_index') }}" class="inline-block py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">All Tasks</a>
@@ -25,37 +23,44 @@
                 </tr>
             </thead>
             <tbody>
-                {% for todo in todos %}
-                    <tr class="border-b border-gray-200 hover:bg-gray-50">
-                        <!-- Task Title Column -->
-                        <td class="py-4 px-6">
-                            <span class="text-lg font-medium text-gray-800">{{ todo.title }}</span>
-                            <span class="block text-sm text-gray-500 mt-1">
-                                {% if todo.completed %}
-                                    <span class="bg-green-100 text-green-600 py-1 px-3 rounded-full text-xs">Completed</span>
-                                {% else %}
-                                    <span class="bg-yellow-100 text-yellow-600 py-1 px-3 rounded-full text-xs">Pending</span>
-                                {% endif %}
-                            </span>
-                        </td>
-                        <!-- Created At Column -->
-                        <td class="py-4 px-6 text-center">
-                            <span class="font-bold text-lg text-gray-800">
-                                <span class="text-slate-800">{{ todo.createdAt|date('d-m-Y') }}</span>
-                                - 
-                                <span class="text-orange-600 text-2xl">{{ todo.createdAt|date('H:i') }}</span>
-                            </span>
-                        </td>
-                        <!-- Actions Column -->
-                        <td class="py-4 px-6 flex flex-col md:flex-row lg:flex-row justify-end items-center">
-                            <a href="{{ path('todo_edit', {'id': todo.id}) }}" class="btn btn-sm btn-primary">Edit</a>
-                            <a href="{{ path('todo_delete', {'id': todo.id}) }}" class="btn btn-sm btn-error ml-4">Delete</a>
-                        </td>
+                {% if todos|length == 0 %}
+                    <tr>
+                        <td colspan="3" class="py-4 text-center text-xl text-gray-600">No task to show</td>
                     </tr>
-                {% endfor %}
+                {% else %}
+                    {% for todo in todos %}
+                        <tr class="border-b border-gray-200 hover:bg-gray-50">
+                            <!-- Task Title Column -->
+                            <td class="py-4 px-6">
+                                <span class="text-lg font-medium text-gray-800">{{ todo.title }}</span>
+                                <span class="block text-sm text-gray-500 mt-1">
+                                    {% if todo.completed %}
+                                        <span class="bg-green-100 text-green-600 py-1 px-3 rounded-full text-xs">Completed</span>
+                                    {% else %}
+                                        <span class="bg-yellow-100 text-yellow-600 py-1 px-3 rounded-full text-xs">Pending</span>
+                                    {% endif %}
+                                </span>
+                            </td>
+                            <!-- Created At Column -->
+                            <td class="py-4 px-6 text-center">
+                                <span class="font-bold text-lg text-gray-800">
+                                    <span class="text-slate-800">{{ todo.createdAt|date('d-m-Y') }}</span>
+                                    - 
+                                    <span class="text-orange-600 text-2xl">{{ todo.createdAt|date('H:i') }}</span>
+                                </span>
+                            </td>
+                            <!-- Actions Column -->
+                            <td class="py-4 px-6 flex flex-col md:flex-row lg:flex-row justify-end items-center">
+                                <a href="{{ path('todo_edit', {'id': todo.id}) }}" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="{{ path('todo_delete', {'id': todo.id}) }}" class="btn btn-sm btn-error ml-4">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
             </tbody>
         </table>
     </div>
+
     <div class="text-center mt-6">
         <a href="{{ path('todo_new') }}" class="inline-block py-3 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-green-500">Create a task</a>
     </div>
