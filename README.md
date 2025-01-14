@@ -44,7 +44,7 @@ Both containers communicate within the same Docker network named `to-do`.
 1. Clone the repository:
 
    ```bash
-   git clone <Backend Repo URL>
+   git clone <Repo URL>
    cd <repository-folder>
    ```
 
@@ -79,7 +79,7 @@ Both containers communicate within the same Docker network named `to-do`.
 1. Clone the repository:
 
    ```bash
-   git clone <Backend Repo URL>
+   git clone <Repo URL>
    cd <repository-folder>
    ```
 
@@ -98,10 +98,6 @@ Both containers communicate within the same Docker network named `to-do`.
 
 - Use the provided endpoints (if any) or console commands to manage tasks.
 - Tasks can be added, edited, deleted, and sorted as required.
-
-## Project Links
-
-- [Backend Repository](<Backend Repo URL>)
 
 ## 📞 Contact
 
