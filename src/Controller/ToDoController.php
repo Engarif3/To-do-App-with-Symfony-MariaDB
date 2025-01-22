@@ -16,17 +16,17 @@ class ToDoController extends AbstractController
     #[Route('/', name: 'todo_index')]
     public function index(Request $request, EntityManagerInterface $em): Response
     {
-        $statusFilter = $request->query->get('status'); // Get the filter status from the query parameter
+        $statusFilter = $request->query->get('status'); 
 
         // Create the query to fetch todos
         $repository = $em->getRepository(ToDo::class);
 
         if ($statusFilter === 'completed') {
-            $todos = $repository->findBy(['completed' => true]); // Filter completed tasks
+            $todos = $repository->findBy(['completed' => true]); 
         } elseif ($statusFilter === 'pending') {
-            $todos = $repository->findBy(['completed' => false]); // Filter pending tasks
+            $todos = $repository->findBy(['completed' => false]); 
         } else {
-            $todos = $repository->findAll(); // Default to all tasks
+            $todos = $repository->findAll();
         }
 
         return $this->render('todo/index.html.twig', [
